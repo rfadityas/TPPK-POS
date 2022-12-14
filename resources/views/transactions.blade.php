@@ -69,7 +69,7 @@
             </div>
             <div class="basis-3/4 text-right">
             <p class="m-0 font-semibold text-primary">@currency($transaction->total_price)</p>
-            <p class="m-0">{{ $transaction->created_at->toTimeString() }}</p>
+            <p class="m-0">{{ $transaction->created_at->format('H:i') }} WIB</p>
             </div>
         </div>
         @endforeach

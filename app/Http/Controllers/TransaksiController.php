@@ -11,7 +11,7 @@ class TransaksiController extends Controller
     public function index()
     {
         $alltransactions = Transaction::all();
-        $alltransactionstoday = Transaction::whereDate('created_at', Carbon::today())->get();
+        $alltransactionstoday = Transaction::whereDate('created_at', Carbon::today())->orderby('created_at', 'desc')->get();
         $revenuethismonth = Transaction::where('created_at', Carbon::now()->month)->sum('total_price');
         $revenuelastmonth = Transaction::where(
             'created_at',
