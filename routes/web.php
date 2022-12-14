@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 // Home Route
 Route::get('/', [HomeController::class, 'index'])->middleware('auth');
+
+// Transaksi Route
+Route::get('/transaksi', [TransaksiController::class, 'index'])->middleware('auth');

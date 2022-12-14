@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2022 at 03:46 AM
+-- Generation Time: Dec 14, 2022 at 04:09 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.5
 
@@ -32,6 +32,17 @@ CREATE TABLE `brands` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `name`) VALUES
+(1, 'Chatime'),
+(2, 'KFC'),
+(3, 'McDonalds'),
+(4, 'Pizza Hut'),
+(5, 'Starbucks');
+
 -- --------------------------------------------------------
 
 --
@@ -42,6 +53,14 @@ CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Makanan'),
+(2, 'Minuman');
 
 -- --------------------------------------------------------
 
@@ -72,7 +91,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2022_12_10_065352_add_column_to_users_table', 2),
 (15, '2022_12_10_065538_add_column_to_products_table', 2),
 (16, '2022_12_10_065741_add_column_to_transactions_table', 2),
-(17, '2022_12_10_070239_add_column_to_transaction_details_table', 2);
+(17, '2022_12_10_070239_add_column_to_transaction_details_table', 2),
+(18, '2022_12_14_142257_add_colum_to_transactions_table', 3);
 
 -- --------------------------------------------------------
 
@@ -106,6 +126,17 @@ CREATE TABLE `products` (
   `price` int(11) NOT NULL,
   `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `category_id`, `brand_id`, `name`, `price`, `stock`) VALUES
+(1, 2, 1, 'Chatime Milk Tea', 15000, 10),
+(2, 2, 5, 'Starbucks Coffee', 20000, 10),
+(3, 1, 2, 'KFC Chicken', 25000, 10),
+(4, 1, 3, 'McDonalds Burger', 30000, 10),
+(5, 1, 4, 'Pizza Hut Pizza', 35000, 10);
 
 -- --------------------------------------------------------
 
@@ -149,8 +180,19 @@ CREATE TABLE `settings` (
 CREATE TABLE `transactions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `total_price` int(11) NOT NULL
+  `total_price` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `user_id`, `total_price`, `created_at`, `updated_at`) VALUES
+(4, 1, 35000, '2022-12-14 14:28:08', '2022-12-14 14:28:18'),
+(5, 1, 55000, '2022-12-14 14:28:22', '2022-12-14 14:28:25'),
+(6, 1, 70000, '2022-12-14 14:28:27', '2022-12-14 14:28:30');
 
 -- --------------------------------------------------------
 
@@ -268,19 +310,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -292,7 +334,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -310,7 +352,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `transaction_details`
