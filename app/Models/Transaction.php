@@ -13,4 +13,13 @@ class Transaction extends Model
         'user_id',
         'total_price'
     ];
+    static function tambahTransaksi()
+    {
+        $data = Transaction::create([
+            'user_id' => auth()->user()->id,
+            'total_price' => \Cart::getTotal(),
+        ]);
+
+        return $data->id;
+    }
 }

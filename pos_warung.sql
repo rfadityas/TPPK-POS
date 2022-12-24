@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2022 at 04:09 PM
+-- Generation Time: Dec 24, 2022 at 11:13 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.5
 
@@ -92,7 +92,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2022_12_10_065538_add_column_to_products_table', 2),
 (16, '2022_12_10_065741_add_column_to_transactions_table', 2),
 (17, '2022_12_10_070239_add_column_to_transaction_details_table', 2),
-(18, '2022_12_14_142257_add_colum_to_transactions_table', 3);
+(18, '2022_12_14_142257_add_colum_to_transactions_table', 3),
+(19, '2022_12_23_154923_add_column_to_transaction_details_table_again', 4);
 
 -- --------------------------------------------------------
 
@@ -132,11 +133,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `brand_id`, `name`, `price`, `stock`) VALUES
-(1, 2, 1, 'Chatime Milk Tea', 15000, 10),
-(2, 2, 5, 'Starbucks Coffee', 20000, 10),
-(3, 1, 2, 'KFC Chicken', 25000, 10),
-(4, 1, 3, 'McDonalds Burger', 30000, 10),
-(5, 1, 4, 'Pizza Hut Pizza', 35000, 10);
+(1, 2, 1, 'Chatime Milk Tea', 15000, 6),
+(2, 2, 5, 'Starbucks Coffee', 20000, 5),
+(3, 1, 2, 'KFC Chicken', 25000, 6),
+(4, 1, 3, 'McDonalds Burger', 30000, 5),
+(5, 1, 4, 'Pizza Hut Pizza', 35000, 5);
 
 -- --------------------------------------------------------
 
@@ -190,9 +191,10 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `user_id`, `total_price`, `created_at`, `updated_at`) VALUES
-(4, 1, 35000, '2022-12-14 14:28:08', '2022-12-14 14:28:18'),
-(5, 1, 55000, '2022-12-14 14:28:22', '2022-12-14 14:28:25'),
-(6, 1, 70000, '2022-12-14 14:28:27', '2022-12-14 14:28:30');
+(68, 1, 65000, '2022-12-24 09:17:38', '2022-12-24 09:17:38'),
+(69, 1, 25000, '2022-12-24 09:20:49', '2022-12-24 09:20:49'),
+(72, 1, 35000, '2022-12-24 10:10:31', '2022-12-24 10:10:31'),
+(74, 1, 20000, '2022-12-24 10:11:45', '2022-12-24 10:11:45');
 
 -- --------------------------------------------------------
 
@@ -205,8 +207,33 @@ CREATE TABLE `transaction_details` (
   `transaction_id` bigint(20) UNSIGNED NOT NULL,
   `product_id` bigint(20) UNSIGNED NOT NULL,
   `price` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transaction_details`
+--
+
+INSERT INTO `transaction_details` (`id`, `transaction_id`, `product_id`, `price`, `quantity`, `created_at`, `updated_at`) VALUES
+(23, 68, 1, 15000, 1, '2022-12-24 09:17:38', '2022-12-24 09:17:38'),
+(24, 68, 2, 20000, 1, '2022-12-24 09:17:38', '2022-12-24 09:17:38'),
+(25, 68, 4, 30000, 1, '2022-12-24 09:17:38', '2022-12-24 09:17:38'),
+(26, 69, 3, 25000, 1, '2022-12-24 09:20:49', '2022-12-24 09:20:49'),
+(27, 72, 5, 35000, 1, '2022-12-24 10:10:31', '2022-12-24 10:10:31'),
+(28, 74, 2, 20000, 1, '2022-12-24 10:11:45', '2022-12-24 10:11:45');
+
+--
+-- Triggers `transaction_details`
+--
+DELIMITER $$
+CREATE TRIGGER `pengurangan_stokbarang` AFTER INSERT ON `transaction_details` FOR EACH ROW BEGIN
+UPDATE products SET stock = stock - NEW.quantity
+WHERE id = NEW.product_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -322,7 +349,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -352,13 +379,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `transaction_details`
 --
 ALTER TABLE `transaction_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`

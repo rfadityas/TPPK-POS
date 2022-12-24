@@ -25,4 +25,15 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/', [HomeController::class, 'index'])->middleware('auth');
 
 // Transaksi Route
-Route::get('/transaksi', [TransaksiController::class, 'index'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/transaksi', [TransaksiController::class, 'index']);
+    Route::prefix('transaksi')->group(function () {
+        Route::get('/tambah', [TransaksiController::class, 'create']);
+        Route::get('/store', [TransaksiController::class, 'store']);
+        Route::get('/getcart', [TransaksiController::class, 'getcart']);
+        Route::get('/destroy/{id}', [TransaksiController::class, 'destroy']);
+        Route::get('/addqty/{id}', [TransaksiController::class, 'addqty']);
+        Route::get('/removeqty/{id}', [TransaksiController::class, 'removeqty']);
+        Route::get('/savetransaksi', [TransaksiController::class, 'savetransaksi']);
+    });
+});

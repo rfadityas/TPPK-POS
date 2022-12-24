@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <a href="" class="btn btn-primary gap-2"
+    <a href="/transaksi/tambah" class="btn btn-primary gap-2"
       ><i class="fas fa-fw fa-plus"></i> Tambah Transaksi</a
     >
     <div class="flex w-full flex-row justify-between my-4">
@@ -74,6 +74,7 @@
         </div>
         @endforeach
     </div>
+    {{ $alltransactionstoday->links() }}
     <div class="flex justify-center my-6">
       <div class="btn-group">
         <button
