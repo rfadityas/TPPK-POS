@@ -124,7 +124,7 @@
                 <a href="#"><i class="fas fa-plus"></i> Tambah Produk</a>
               </li>
               <li>
-                <a href="#"><i class="fas fa-boxes"></i> Daftar Produk</a>
+                <a href="/products"><i class="fas fa-boxes"></i> Daftar Produk</a>
               </li>
               <div class="divider my-0"></div>
               <li class="menu-title">

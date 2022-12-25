@@ -13,7 +13,7 @@
         <div class="stat-title">Total Transaksi</div>
         <div class="stat-value">{{ $totaltrx }}</div>
         <div class="stat-desc">
-          <a href="" class="mt-3 underline">Lihat Transaksi</a>
+          <a href="/transaksi" class="mt-3 underline">Lihat Transaksi</a>
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
         <div class="stat-title">Total Produk</div>
         <div class="stat-value">{{ $totalprod }}</div>
         <div class="stat-desc">
-          <a href="" class="mt-3 underline">Lihat Produk</a>
+          <a href="/products" class="mt-3 underline">Lihat Produk</a>
         </div>
       </div>
     </div>

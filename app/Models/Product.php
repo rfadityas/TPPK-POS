@@ -17,6 +17,8 @@ class Product extends Model
         'stock'
     ];
 
+    public $timestamps = false;
+
     public function category()
     {
         return $this->belongsTo(Categorie::class);

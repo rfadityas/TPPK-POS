@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransaksiController;
 
 /*
@@ -26,6 +27,7 @@ Route::get('/', [HomeController::class, 'index'])->middleware('auth');
 
 // Transaksi Route
 Route::middleware(['auth'])->group(function () {
+    // Transaksi Route
     Route::get('/transaksi', [TransaksiController::class, 'index']);
     Route::prefix('transaksi')->group(function () {
         Route::get('/tambah', [TransaksiController::class, 'create']);
@@ -35,5 +37,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/addqty/{id}', [TransaksiController::class, 'addqty']);
         Route::get('/removeqty/{id}', [TransaksiController::class, 'removeqty']);
         Route::get('/savetransaksi', [TransaksiController::class, 'savetransaksi']);
+    });
+
+    // Product Route
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductController::class, 'index']);
+        Route::get('/tambah', [ProductController::class, 'create']);
+        Route::post('/store', [ProductController::class, 'store']);
+        Route::get('/edit/{id}', [ProductController::class, 'edit']);
+        Route::post('/update/{id}', [ProductController::class, 'update']);
+        Route::get('/destroy/{id}', [ProductController::class, 'destroy']);
     });
 });
