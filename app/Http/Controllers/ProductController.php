@@ -43,4 +43,32 @@ class ProductController extends Controller
 
         return redirect('/products')->with('status', 'Data berhasil ditambahkan');
     }
+    public function edit($id)
+    {
+        $categories = Categorie::all()->sortBy('name');
+        $brands = Brand::all()->sortBy('name');
+        $product = Product::find($id);
+        return view('app.products.edit', ['product' => $product, 'categories' => $categories, 'brands' => $brands]);
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+        ]);
+
+        Product::where('id', $id)
+            ->update([
+                'category_id' => $request->category_id,
+                'brand_id' => $request->brand_id,
+                'name' => $request->name,
+                'price' => $request->price,
+                'stock' => $request->stock,
+            ]);
+
+        return redirect('/products')->with('status', 'Data berhasil diubah');
+    }
 }

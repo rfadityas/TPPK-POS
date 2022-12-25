@@ -30,13 +30,13 @@
                 {{ $product->name }}
               </p>
               <small>{{ $product->category->name }} | {{ $product->brand->name }} | Stok: <b>{{ $product->stock }}</b></small>
-              <p class="m-0 font-semibold text-primary">Rp60.000</p>
+              <p class="m-0 font-semibold text-primary">@currency($product->price)</p>
             </div>
             <div
               class="flex basis-1/4 flex-col items-end justify-between"
             >
               <a
-                href="edit_product.html"
+                href="/products/edit/{{ $product->id }}"
                 class="btn-success btn-sm btn w-10"
                 ><i class="fal fa-fw fa-edit"></i
               ></a>
