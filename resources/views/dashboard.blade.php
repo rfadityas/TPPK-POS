@@ -44,3 +44,15 @@
   </div>
 </section>
 @endsection
+
+@section('scriptjs')
+@if(Session::has('status'))
+<script>
+  Swal.fire(
+  '{{Session::get('message')}}',
+  '',
+  '{{Session::get('status')}}'
+)
+</script>
+@endif
+@endsection

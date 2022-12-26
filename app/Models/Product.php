@@ -27,4 +27,8 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+    public function transaksi()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }
 }

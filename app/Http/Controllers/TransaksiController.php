@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Transaction;
-use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Models\TransactionDetail;
+use Illuminate\Support\Facades\Session;
 
 class TransaksiController extends Controller
 {
@@ -104,7 +105,18 @@ class TransaksiController extends Controller
             TransactionDetail::tambahDetailTransaksi($transaction_id, $id_barang, $harga, $jumlah);
         }
 
+        Session::flash('status', 'success');
+        Session::flash('message', 'Berhasil menambah transaksi');
         \Cart::clear();
         // return redirect()->intended('/transaksi/tambah');
+    }
+    public function detail($id)
+    {
+        $transaction = Transaction::where('id', $id)->first();
+        $transactiondetails = TransactionDetail::where('transaction_id', $id)->get();
+        return view('app.transactions.detail', [
+            'transaction' => $transaction,
+            'transactiondetails' => $transactiondetails
+        ]);
     }
 }

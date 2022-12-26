@@ -64,7 +64,7 @@
         >
             <i class="far fa-fw fa-shopping-basket fa-2x text-primary"></i>
             <div class="basis-3/4">
-            <a href="" class="font-semibold">Transaksi#{{ $transaction->id }}</a>
+            <a href="/transaksi/detailtransaksi/{{ $transaction->id }}" class="font-semibold">Transaksi#{{ $transaction->id }}</a>
             <p class="m-0">Pesanan untuk <b>Bro</b></p>
             </div>
             <div class="basis-3/4 text-right">

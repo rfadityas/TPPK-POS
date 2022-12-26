@@ -23,7 +23,8 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            Session::flash('loginsuccess', 'login');
+            Session::flash('status', 'success');
+            Session::flash('message', 'Selamat datang ' . Auth::user()->name . '!');
 
             return redirect()->intended('/');
         }

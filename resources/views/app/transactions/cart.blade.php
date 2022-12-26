@@ -92,6 +92,16 @@
   {{-- </form> --}}
   </section>
 
+@if(Session::has('status'))
+<script>
+  Swal.fire(
+  '{{Session::get('message')}}',
+  '',
+  '{{Session::get('status')}}'
+)
+</script>
+@endif
+
   <script>
     $('#input-bayar').keyup(function(){
         // console.log(parseInt($("#total").data("total")))

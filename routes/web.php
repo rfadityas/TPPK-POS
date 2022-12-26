@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
     // Transaksi Route
     Route::get('/transaksi', [TransaksiController::class, 'index']);
     Route::prefix('transaksi')->group(function () {
+        Route::get('/detailtransaksi/{id}', [TransaksiController::class, 'detail']);
         Route::get('/tambah', [TransaksiController::class, 'create']);
         Route::get('/store', [TransaksiController::class, 'store']);
         Route::get('/getcart', [TransaksiController::class, 'getcart']);
@@ -46,6 +47,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store', [ProductController::class, 'store']);
         Route::get('/edit/{id}', [ProductController::class, 'edit']);
         Route::post('/update/{id}', [ProductController::class, 'update']);
-        Route::get('/destroy/{id}', [ProductController::class, 'destroy']);
+        Route::get('/delete/{id}', [ProductController::class, 'delete']);
     });
 });

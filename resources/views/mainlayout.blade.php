@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title') | POS Warung Kelontong</title>
+    <script src="{{ asset('dist/js/sweetalert2.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('dist/css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/dist/css/main.css') }}" />
     <link
     href="https://cdn.staticaly.com/gh/hung1001/font-awesome-pro/4cac1a6/css/all.css"
@@ -121,7 +123,7 @@
                 <span>Produk</span>
               </li>
               <li>
-                <a href="#"><i class="fas fa-plus"></i> Tambah Produk</a>
+                <a href="/products/tambah"><i class="fas fa-plus"></i> Tambah Produk</a>
               </li>
               <li>
                 <a href="/products"><i class="fas fa-boxes"></i> Daftar Produk</a>
@@ -165,6 +167,7 @@
       </div>
     </div>
 
+    @yield('scriptjs')
     {{-- <script src="{{ asset('/dist/js/main.js') }}"></script> --}}
     
   </body>

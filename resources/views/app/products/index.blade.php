@@ -43,7 +43,7 @@
               <button
                 type="button"
                 class="btn-error btn-sm btn w-10"
-                onclick="return confirm('Apakah Anda yakin ingin menghapus?');"
+                onclick="confirmationHapusData('/products/delete/{{ $product->id }}')"
               >
                 <i class="fal fa-fw fa-trash"></i>
               </button>
@@ -79,4 +79,36 @@
       </div>
     </div>
   </section>
+@endsection
+
+@section('scriptjs')
+
+@if(Session::has('status'))
+<script>
+  Swal.fire(
+  '{{Session::get('message')}}',
+  '',
+  '{{Session::get('status')}}'
+)
+</script>
+@endif
+
+<script>
+  function confirmationHapusData(url) {
+      Swal.fire({
+          title: 'Apakah anda yakin?',
+          text: 'Setelah dihapus data akan hilang selamanya!',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#DD6B55',
+          confirmButtonText: 'Confirm',
+          closeOnConfirm: false
+      }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+              window.location.href = url;
+          }
+      })
+  }
+</script>
 @endsection

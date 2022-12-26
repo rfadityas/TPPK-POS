@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Categorie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -41,7 +42,9 @@ class ProductController extends Controller
             'stock' => $request->stock,
         ]);
 
-        return redirect('/products')->with('status', 'Data berhasil ditambahkan');
+        Session::flash('status', 'success');
+        Session::flash('message', 'Barang berhasil ditambahkan');
+        return redirect('/products');
     }
     public function edit($id)
     {
@@ -69,6 +72,21 @@ class ProductController extends Controller
                 'stock' => $request->stock,
             ]);
 
-        return redirect('/products')->with('status', 'Data berhasil diubah');
+        Session::flash('status', 'success');
+        Session::flash('message', 'Barang berhasil diubah');
+        return redirect('/products');
+    }
+    public function delete($id)
+    {
+        if (Product::find($id)->transaksi()->exists()) {
+            Session::flash('status', 'error');
+            Session::flash('message', 'Barang tidak bisa dihapus');
+            return redirect('/products');
+        }
+
+        Product::destroy($id);
+        Session::flash('status', 'success');
+        Session::flash('message', 'Barang berhasil dihapus');
+        return redirect('/products');
     }
 }

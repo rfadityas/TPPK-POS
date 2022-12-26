@@ -11,7 +11,7 @@
 
 <section class="prose p-4">
     <div class="mb-4 flex flex-row items-center gap-4">
-      <a href="transaction.html"><i class="fas fa-arrow-left"></i></a>
+      <a href="/transaksi"><i class="fas fa-arrow-left"></i></a>
       <h2 class="m-0 p-0">Tambah Transaksi</h2>
     </div>
 

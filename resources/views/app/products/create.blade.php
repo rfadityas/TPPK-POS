@@ -5,7 +5,7 @@
 @section('content')
 <section class="prose p-4">
     <div class="mb-4 flex flex-row items-center gap-4">
-      <a href="product.html"><i class="fas fa-arrow-left"></i></a>
+      <a href="/products"><i class="fas fa-arrow-left"></i></a>
       <h2 class="m-0 p-0">Tambah Produk</h2>
     </div>
 
