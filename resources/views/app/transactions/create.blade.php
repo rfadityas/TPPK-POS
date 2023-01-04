@@ -48,7 +48,7 @@
         @endforeach
       </div>
     </section>
-    {{ $products->links()}}
+    {{ $products->links('vendor.pagination.custom')}}
 
 
     {{-- @include('app.transactions.cart') --}}

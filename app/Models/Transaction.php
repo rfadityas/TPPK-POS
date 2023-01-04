@@ -11,13 +11,17 @@ class Transaction extends Model
 
     protected $fillable = [
         'user_id',
-        'total_price'
+        'total_price',
+        'invoice',
+        'pay'
     ];
-    static function tambahTransaksi()
+    static function tambahTransaksi($bayar)
     {
         $data = Transaction::create([
             'user_id' => auth()->user()->id,
             'total_price' => \Cart::getTotal(),
+            'invoice' => 'INV-' . time() . '.pdf',
+            'pay' => $bayar
         ]);
 
         return $data->id;

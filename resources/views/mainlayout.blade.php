@@ -136,7 +136,7 @@
                 <a href="#"><i class="fas fa-plus"></i> Tambah Kategori</a>
               </li>
               <li>
-                <a href="#"><i class="fas fa-stream"></i> Daftar Kategori</a>
+                <a href="/kategori"><i class="fas fa-stream"></i> Daftar Kategori</a>
               </li>
               <div class="divider my-0"></div>
               <li class="menu-title">

@@ -166,6 +166,7 @@
             });
         }
         function purchase() {
+            var bayar = $('#input-bayar').val();
             var kembali = $("#kembali").data("kembali");
             var total = parseInt($("#total").data("total"))
             if (kembali < 0) {
@@ -179,6 +180,7 @@
             $.ajax({
             url: `/transaksi/savetransaksi`,
             type: "GET",
+            data: "bayar="+bayar,
             success: function (response) {
                 getcart()
             },

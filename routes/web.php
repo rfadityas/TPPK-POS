@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TransaksiController;
 
 /*
@@ -38,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/addqty/{id}', [TransaksiController::class, 'addqty']);
         Route::get('/removeqty/{id}', [TransaksiController::class, 'removeqty']);
         Route::get('/savetransaksi', [TransaksiController::class, 'savetransaksi']);
+        Route::get('/semuatransaksi', [TransaksiController::class, 'semuatransaksi']);
+        Route::get('/sendinvoice/{id}', [TransaksiController::class, 'sendinvoice']);
+        Route::get('/cek/{id}', [TransaksiController::class, 'cek']);
     });
 
     // Product Route
@@ -48,5 +52,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', [ProductController::class, 'edit']);
         Route::post('/update/{id}', [ProductController::class, 'update']);
         Route::get('/delete/{id}', [ProductController::class, 'delete']);
+    });
+
+    Route::prefix('kategori')->group(function () {
+        Route::get('/', [KategoriController::class, 'index']);
     });
 });

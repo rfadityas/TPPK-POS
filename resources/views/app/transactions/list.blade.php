@@ -55,7 +55,7 @@
     >
     <div class="flex w-full flex-row justify-between my-4">
       <h4 class="m-0">Transaksi hari ini</h4>
-      <a href="" class="no-underline">Lihat semua ></a>
+      <a href="/transaksi/semuatransaksi" class="no-underline">Lihat semua ></a>
     </div>
     <div class="grid w-full gap-3">
         @foreach ($alltransactionstoday as $transaction)
@@ -74,8 +74,8 @@
         </div>
         @endforeach
     </div>
-    {{ $alltransactionstoday->links() }}
-    <div class="flex justify-center my-6">
+    {{ $alltransactionstoday->links('vendor.pagination.custom') }}
+    {{-- <div class="flex justify-center my-6">
       <div class="btn-group">
         <button
           class="btn bg-base-100 hover:bg-base-300 border-base-100 hover:border-base-300 text-base-content shadow btn-active"
@@ -98,6 +98,6 @@
           4
         </button>
       </div>
-    </div>
+    </div> --}}
   </section>
 @endsection

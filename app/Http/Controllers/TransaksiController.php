@@ -6,8 +6,10 @@ use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class TransaksiController extends Controller
 {
@@ -35,7 +37,7 @@ class TransaksiController extends Controller
         $search =  $request->search;
 
         $products = Product::where('name', 'like', '%' . $search . '%')
-            ->paginate(6);
+            ->paginate(4);
         return view('app.transactions.create', ['products' => $products]);
     }
     public function store(Request $request)
@@ -94,9 +96,9 @@ class TransaksiController extends Controller
     {
         return view('app.transactions.cart');
     }
-    public function savetransaksi()
+    public function savetransaksi(Request $request)
     {
-        $transaction_id = Transaction::tambahTransaksi();
+        $transaction_id = Transaction::tambahTransaksi($request->bayar);
 
         foreach (\Cart::getContent() as $item) {
             $id_barang = $item->id;
@@ -105,17 +107,60 @@ class TransaksiController extends Controller
             TransactionDetail::tambahDetailTransaksi($transaction_id, $id_barang, $harga, $jumlah);
         }
 
+        $transaction1 = Transaction::where('id', $transaction_id)->first();
+        $transactiondetails = TransactionDetail::where('transaction_id', $transaction_id)->get();
+        $pdf = PDF::loadView('app.transactions.nota', [
+            'transaction1' => $transaction1,
+            'transactiondetails' => $transactiondetails
+        ]);
+        $pdf->setPaper('A4', 'landscape');
+        Storage::put('public/pdf/' . $transaction1->invoice, $pdf->output());
+
         Session::flash('status', 'success');
-        Session::flash('message', 'Berhasil menambah transaksi');
+        Session::flash('message', 'Berhasil menambah transaksi dengan id #' . $transaction_id);
         \Cart::clear();
         // return redirect()->intended('/transaksi/tambah');
     }
     public function detail($id)
     {
-        $transaction = Transaction::where('id', $id)->first();
+        $transaction1 = Transaction::where('id', $id)->first();
         $transactiondetails = TransactionDetail::where('transaction_id', $id)->get();
         return view('app.transactions.detail', [
-            'transaction' => $transaction,
+            'transaction1' => $transaction1,
+            'transactiondetails' => $transactiondetails
+        ]);
+    }
+    public function semuatransaksi(Request $request)
+    {
+        $search =  $request->search;
+        $alltransactions = Transaction::where('id', 'like', '%' . $search . '%')
+            ->paginate(4);
+        return view('app.transactions.alllist', ['alltransactions' => $alltransactions]);
+    }
+    public function sendinvoice($id)
+    {
+        // $transaction1 = Transaction::where('id', $id)->first();
+        // $transactiondetails = TransactionDetail::where('transaction_id', $id)->get();
+        // $pdf = PDF::loadView('app.transactions.nota', [
+        //     'transaction1' => $transaction1,
+        //     'transactiondetails' => $transactiondetails
+        // ]);
+        // $pdf->setPaper('A4', 'landscape');
+        // // Storage::put('public/pdf/test2.pdf', $pdf->output());
+        // return $pdf->download('test2.pdf');
+        // return $pdf->stream();
+        // if (Storage::disk('local')->exists('public/pdf/test2.pdf')) {
+        //     Storage::get('public/pdf/test2.pdf');
+        // } else {
+        //     dd('tidak ada');
+        // }
+    }
+    public function cek($id)
+    {
+        $transaction1 = Transaction::where('id', $id)->first();
+        $transactiondetails = TransactionDetail::where('transaction_id', $id)->get();
+        return view('app.transactions.nota', [
+            'transaction1' => $transaction1,
             'transactiondetails' => $transactiondetails
         ]);
     }
