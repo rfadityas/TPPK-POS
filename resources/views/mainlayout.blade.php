@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @yield('meta')
     <title>@yield('title') | POS Warung Kelontong</title>
     <script src="{{ asset('dist/js/sweetalert2.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('dist/css/sweetalert2.min.css') }}">
@@ -118,6 +119,11 @@
                   ><i class="fas fa-exchange-alt"></i> Daftar Transaksi</a
                 >
               </li>
+              <li>
+                <a href="/transaksi/laporan"
+                  ><i class="fal fa-file-spreadsheet"></i> Laporan</a
+                >
+              </li>
               <div class="divider my-0"></div>
               <li class="menu-title">
                 <span>Produk</span>
@@ -133,7 +139,7 @@
                 <span>Kategori</span>
               </li>
               <li>
-                <a href="#"><i class="fas fa-plus"></i> Tambah Kategori</a>
+                <a href="/kategori/tambah"><i class="fas fa-plus"></i> Tambah Kategori</a>
               </li>
               <li>
                 <a href="/kategori"><i class="fas fa-stream"></i> Daftar Kategori</a>

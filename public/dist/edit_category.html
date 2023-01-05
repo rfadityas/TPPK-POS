@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Dashboard | POS Warung Kelontong</title>
+    <title>Ubah Kategori | POS Warung Kelontong</title>
     <link rel="stylesheet" href="css/main.css" />
     <link
       href="https://cdn.staticaly.com/gh/hung1001/font-awesome-pro/4cac1a6/css/all.css"
@@ -65,53 +65,31 @@
             </div>
           </div>
           <section class="prose p-4">
-            <h2 class="mb-4">Dashboard</h2>
-            <div class="grid grid-cols-1 gap-4">
-              <div class="stats shadow">
-                <div class="stat bg-primary text-primary-content">
-                  <div class="stat-figure">
-                    <i class="fas fa-fw fa-exchange-alt text-2xl"></i>
-                  </div>
-                  <div class="stat-title">Total Transaksi</div>
-                  <div class="stat-value">52</div>
-                  <div class="stat-desc">
-                    <a
-                      href="transaction.html"
-                      class="mt-3 font-light text-white underline"
-                      >Lihat Transaksi</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="stats shadow">
-                <div class="stat bg-success text-success-content">
-                  <div class="stat-figure">
-                    <i class="fas fa-fw fa-boxes text-2xl"></i>
-                  </div>
-                  <div class="stat-title">Total Produk</div>
-                  <div class="stat-value">52</div>
-                  <div class="stat-desc">
-                    <a href="" class="mt-3 text-white underline"
-                      >Lihat Produk</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="stats shadow">
-                <div class="stat bg-warning text-warning-content">
-                  <div class="stat-figure">
-                    <i class="fas fa-fw fa-stream text-2xl"></i>
-                  </div>
-                  <div class="stat-title">Total Kategori Produk</div>
-                  <div class="stat-value">5</div>
-                  <div class="stat-desc">
-                    <a href="" class="mt-3 underline dark:text-base-100"
-                      >Lihat Kategori Produk</a
-                    >
-                  </div>
-                </div>
-              </div>
+            <div class="mb-4 flex flex-row items-center gap-4">
+              <a href="category.html"><i class="fas fa-arrow-left"></i></a>
+              <h2 class="m-0 p-0">Ubah Kategori</h2>
             </div>
+            <section id="edit-category" class="w-full">
+              <div class="card bg-base-100 shadow">
+                <div class="card-body p-5">
+                  <form action="">
+                    <div class="form-control mb-2">
+                      <label class="label"
+                        ><span class="label-text">Nama Kategori</span></label
+                      >
+                      <input
+                        value="Aqua AQR-D190 Kulkas 1 Pintu - Dark Silver"
+                        placeholder="Nama Kategori"
+                        class="input-bordered input focus:outline-none"
+                      />
+                    </div>
+                    <div class="form-control mt-5">
+                      <button class="btn btn-success">Ubah</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </section>
           </section>
         </div>
         <div class="drawer-side">

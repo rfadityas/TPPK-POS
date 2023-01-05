@@ -40,8 +40,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/removeqty/{id}', [TransaksiController::class, 'removeqty']);
         Route::get('/savetransaksi', [TransaksiController::class, 'savetransaksi']);
         Route::get('/semuatransaksi', [TransaksiController::class, 'semuatransaksi']);
-        Route::get('/sendinvoice/{id}', [TransaksiController::class, 'sendinvoice']);
         Route::get('/cek/{id}', [TransaksiController::class, 'cek']);
+        Route::post('/searchcustomer', [TransaksiController::class, 'search'])->name('search.customer');
+        Route::post('/simpancust', [TransaksiController::class, 'simpancust'])->name('simpan.customer');
+        Route::post('/sendinvoicelog', [TransaksiController::class, 'sendinvoicelog'])->name('simpan.sendinvoicelog');
+        Route::get('/laporan', [TransaksiController::class, 'laporan']);
+        Route::get('/exportlaporan/{tanggalawal}/{tanggalakhir}', [TransaksiController::class, 'exportlaporan'])->name('export.laporan');
     });
 
     // Product Route
@@ -56,5 +60,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('kategori')->group(function () {
         Route::get('/', [KategoriController::class, 'index']);
+        Route::get('/tambah', [KategoriController::class, 'create']);
+        Route::post('/store', [KategoriController::class, 'store']);
+        Route::get('/edit/{id}', [KategoriController::class, 'edit']);
+        Route::post('/update/{id}', [KategoriController::class, 'update']);
+        Route::get('/delete/{id}', [KategoriController::class, 'delete']);
     });
 });

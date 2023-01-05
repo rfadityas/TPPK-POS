@@ -237,9 +237,8 @@
                     <td colspan="2">
                         <h4>Karyawan : {{ $transaction1->user->name }}</h4>
                         <p><br>
-                            Jl Sultan Hasanuddin Makassar<br>
-                            085343966997<br>
-                            support@daengweb.id
+                          Jl Daradasih No 22 Bugisan Patangpuluhan Wirobrajan Yogyakarta<br>
+                          087846955367<br>
                         </p>
                     </td>
                     <td colspan="2">

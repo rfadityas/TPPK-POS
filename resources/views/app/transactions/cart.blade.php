@@ -180,7 +180,7 @@
             $.ajax({
             url: `/transaksi/savetransaksi`,
             type: "GET",
-            data: "bayar="+bayar,
+            data: "bayar="+bayar+"&kembali="+kembali,
             success: function (response) {
                 getcart()
             },

@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Customer;
+use App\Models\InvoiceLog;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\TransactionDetail;
+use App\Exports\TransactionExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -137,24 +141,7 @@ class TransaksiController extends Controller
             ->paginate(4);
         return view('app.transactions.alllist', ['alltransactions' => $alltransactions]);
     }
-    public function sendinvoice($id)
-    {
-        // $transaction1 = Transaction::where('id', $id)->first();
-        // $transactiondetails = TransactionDetail::where('transaction_id', $id)->get();
-        // $pdf = PDF::loadView('app.transactions.nota', [
-        //     'transaction1' => $transaction1,
-        //     'transactiondetails' => $transactiondetails
-        // ]);
-        // $pdf->setPaper('A4', 'landscape');
-        // // Storage::put('public/pdf/test2.pdf', $pdf->output());
-        // return $pdf->download('test2.pdf');
-        // return $pdf->stream();
-        // if (Storage::disk('local')->exists('public/pdf/test2.pdf')) {
-        //     Storage::get('public/pdf/test2.pdf');
-        // } else {
-        //     dd('tidak ada');
-        // }
-    }
+
     public function cek($id)
     {
         $transaction1 = Transaction::where('id', $id)->first();
@@ -163,5 +150,49 @@ class TransaksiController extends Controller
             'transaction1' => $transaction1,
             'transactiondetails' => $transactiondetails
         ]);
+    }
+    public function search(Request $request)
+    {
+        $customers = Customer::all();
+        if ($request->keyword != '') {
+            $customers = Customer::where('name', 'like', '%' . $request->keyword . '%')->get();
+        }
+        return response()->json([
+            'customers' => $customers
+        ]);
+    }
+    public function simpancust(Request $request)
+    {
+        $customer = Customer::create([
+            'name' => $request->namapelangganbaru,
+            'number' => $request->nomorhpbaru,
+        ]);
+        return response()->json([
+            'status' => 'success'
+        ]);
+    }
+    public function sendinvoicelog(Request $request)
+    {
+        $simpanlog = InvoiceLog::create([
+            'customer_id' => $request->idcustomer,
+            'transaction_id' => $request->idtransaksi
+        ]);
+        return response()->json([
+            'status' => 'success'
+        ]);
+    }
+    public function laporan(Request $request)
+    {
+        if ($request->tanggalawal != '' && $request->tanggalakhir != '') {
+            $transactions = Transaction::whereBetween('created_at', [$request->tanggalawal, $request->tanggalakhir])->orderBy('id', 'DESC')->paginate(5);
+            return view('app.transactions.laporan', ['transactions' => $transactions]);
+        } else {
+            $transactions = Transaction::orderBy('id', 'DESC')->paginate(5);
+        }
+        return view('app.transactions.laporan', ['transactions' => $transactions]);
+    }
+    public function exportlaporan($tanggalawal, $tanggalakhir)
+    {
+        return Excel::download(new TransactionExport($tanggalawal, $tanggalakhir), 'transaksiexport.xlsx');
     }
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Dashboard | POS Warung Kelontong</title>
+    <title>Daftar Kategori | POS Warung Kelontong</title>
     <link rel="stylesheet" href="css/main.css" />
     <link
       href="https://cdn.staticaly.com/gh/hung1001/font-awesome-pro/4cac1a6/css/all.css"
@@ -65,51 +65,158 @@
             </div>
           </div>
           <section class="prose p-4">
-            <h2 class="mb-4">Dashboard</h2>
-            <div class="grid grid-cols-1 gap-4">
-              <div class="stats shadow">
-                <div class="stat bg-primary text-primary-content">
-                  <div class="stat-figure">
-                    <i class="fas fa-fw fa-exchange-alt text-2xl"></i>
+            <h2 class="mb-0">Daftar Kategori</h2>
+            <a href="add_category.html" class="btn btn-primary my-3 gap-2"
+              ><i class="fas fa-fw fa-plus"></i> Tambah Kategori</a
+            >
+            <div class="form-control mb-4">
+              <label class="label"
+                ><span class="label-text">Cari Kategori</span></label
+              >
+              <input
+                placeholder="Cari Kategori"
+                class="input-bordered input focus:outline-none"
+              />
+            </div>
+            <div class="grid w-full gap-3">
+              <div class="card bg-base-100 shadow">
+                <div class="card-body flex flex-row items-center gap-4 p-5">
+                  <div class="basis-3/4">
+                    <p class="m-0 text-sm font-semibold">Aqua</p>
                   </div>
-                  <div class="stat-title">Total Transaksi</div>
-                  <div class="stat-value">52</div>
-                  <div class="stat-desc">
+                  <div
+                    class="flex basis-1/4 flex-row items-end justify-between gap-2"
+                  >
                     <a
-                      href="transaction.html"
-                      class="mt-3 font-light text-white underline"
-                      >Lihat Transaksi</a
+                      href="edit_category.html"
+                      class="btn btn-success btn-sm w-10"
+                      ><i class="fal fa-fw fa-edit"></i
+                    ></a>
+                    <button
+                      type="button"
+                      class="btn btn-error btn-sm w-10"
+                      onclick="return confirm('Apakah Anda yakin ingin menghapus?');"
                     >
+                      <i class="fal fa-fw fa-trash"></i>
+                    </button>
                   </div>
                 </div>
               </div>
-              <div class="stats shadow">
-                <div class="stat bg-success text-success-content">
-                  <div class="stat-figure">
-                    <i class="fas fa-fw fa-boxes text-2xl"></i>
+              <div class="card bg-base-100 shadow">
+                <div class="card-body flex flex-row items-center gap-4 p-5">
+                  <div class="basis-3/4">
+                    <p class="m-0 text-sm font-semibold">Aqua</p>
                   </div>
-                  <div class="stat-title">Total Produk</div>
-                  <div class="stat-value">52</div>
-                  <div class="stat-desc">
-                    <a href="" class="mt-3 text-white underline"
-                      >Lihat Produk</a
+                  <div
+                    class="flex basis-1/4 flex-row items-end justify-between gap-2"
+                  >
+                    <a
+                      href="edit_category.html"
+                      class="btn btn-success btn-sm w-10"
+                      ><i class="fal fa-fw fa-edit"></i
+                    ></a>
+                    <button
+                      type="button"
+                      class="btn btn-error btn-sm w-10"
+                      onclick="return confirm('Apakah Anda yakin ingin menghapus?');"
                     >
+                      <i class="fal fa-fw fa-trash"></i>
+                    </button>
                   </div>
                 </div>
               </div>
-              <div class="stats shadow">
-                <div class="stat bg-warning text-warning-content">
-                  <div class="stat-figure">
-                    <i class="fas fa-fw fa-stream text-2xl"></i>
+              <div class="card bg-base-100 shadow">
+                <div class="card-body flex flex-row items-center gap-4 p-5">
+                  <div class="basis-3/4">
+                    <p class="m-0 text-sm font-semibold">Aqua</p>
                   </div>
-                  <div class="stat-title">Total Kategori Produk</div>
-                  <div class="stat-value">5</div>
-                  <div class="stat-desc">
-                    <a href="" class="mt-3 underline dark:text-base-100"
-                      >Lihat Kategori Produk</a
+                  <div
+                    class="flex basis-1/4 flex-row items-end justify-between gap-2"
+                  >
+                    <a
+                      href="edit_category.html"
+                      class="btn btn-success btn-sm w-10"
+                      ><i class="fal fa-fw fa-edit"></i
+                    ></a>
+                    <button
+                      type="button"
+                      class="btn btn-error btn-sm w-10"
+                      onclick="return confirm('Apakah Anda yakin ingin menghapus?');"
                     >
+                      <i class="fal fa-fw fa-trash"></i>
+                    </button>
                   </div>
                 </div>
+              </div>
+              <div class="card bg-base-100 shadow">
+                <div class="card-body flex flex-row items-center gap-4 p-5">
+                  <div class="basis-3/4">
+                    <p class="m-0 text-sm font-semibold">Aqua</p>
+                  </div>
+                  <div
+                    class="flex basis-1/4 flex-row items-end justify-between gap-2"
+                  >
+                    <a
+                      href="edit_category.html"
+                      class="btn btn-success btn-sm w-10"
+                      ><i class="fal fa-fw fa-edit"></i
+                    ></a>
+                    <button
+                      type="button"
+                      class="btn btn-error btn-sm w-10"
+                      onclick="return confirm('Apakah Anda yakin ingin menghapus?');"
+                    >
+                      <i class="fal fa-fw fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card bg-base-100 shadow">
+                <div class="card-body flex flex-row items-center gap-4 p-5">
+                  <div class="basis-3/4">
+                    <p class="m-0 text-sm font-semibold">Aqua</p>
+                  </div>
+                  <div
+                    class="flex basis-1/4 flex-row items-end justify-between gap-2"
+                  >
+                    <a
+                      href="edit_category.html"
+                      class="btn btn-success btn-sm w-10"
+                      ><i class="fal fa-fw fa-edit"></i
+                    ></a>
+                    <button
+                      type="button"
+                      class="btn btn-error btn-sm w-10"
+                      onclick="return confirm('Apakah Anda yakin ingin menghapus?');"
+                    >
+                      <i class="fal fa-fw fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="my-6 flex justify-center">
+              <div class="btn-group">
+                <button
+                  class="btn btn-active border-base-100 bg-base-100 text-base-content shadow hover:border-base-300 hover:bg-base-300"
+                >
+                  1
+                </button>
+                <button
+                  class="btn border-base-100 bg-base-100 text-base-content shadow hover:border-base-300 hover:bg-base-300"
+                >
+                  2
+                </button>
+                <button
+                  class="btn border-base-100 bg-base-100 text-base-content shadow hover:border-base-300 hover:bg-base-300"
+                >
+                  3
+                </button>
+                <button
+                  class="btn border-base-100 bg-base-100 text-base-content shadow hover:border-base-300 hover:bg-base-300"
+                >
+                  4
+                </button>
               </div>
             </div>
           </section>
