@@ -193,6 +193,7 @@ class TransaksiController extends Controller
     }
     public function exportlaporan($tanggalawal, $tanggalakhir)
     {
-        return Excel::download(new TransactionExport($tanggalawal, $tanggalakhir), 'transaksiexport.xlsx');
+        $exportname = 'laporantransaksi' . $tanggalawal . '-' . $tanggalakhir . '.xlsx';
+        return Excel::download(new TransactionExport($tanggalawal, $tanggalakhir), $exportname);
     }
 }

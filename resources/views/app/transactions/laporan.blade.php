@@ -91,6 +91,14 @@
     function exportlaporan() {
       var tanggalawal = document.getElementsByName("tanggalawal")[0].value;
       var tanggalakhir = document.getElementsByName("tanggalakhir")[0].value;
+      if (tanggalawal == "" || tanggalakhir == "") {
+        Swal.fire(
+          'Tanggal awal dan akhir harus diisi!',
+          '',
+          'error'
+        )
+        return;
+      }
       window.location.href = "/transaksi/exportlaporan/" + tanggalawal + "/" + tanggalakhir + "";
     }
   </script>
