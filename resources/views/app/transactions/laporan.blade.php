@@ -61,7 +61,8 @@
       </div>
       @endforeach
     </div>
-    <div class="my-6 flex justify-center">
+    {{ $transactions->links('vendor.pagination.custom') }}
+    {{-- <div class="my-6 flex justify-center">
       <div class="btn-group">
         <button
           class="btn btn-active border-base-100 bg-base-100 text-base-content shadow hover:border-base-300 hover:bg-base-300"
@@ -84,7 +85,7 @@
           4
         </button>
       </div>
-    </div>
+    </div> --}}
   </section>
 
   <script>

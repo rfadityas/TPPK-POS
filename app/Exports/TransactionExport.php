@@ -23,7 +23,8 @@ class TransactionExport implements FromView
     public function view(): View
     {
         return view('app.transactions.export', [
-            'transactions' => Transaction::whereBetween('created_at', [$this->from_date, $this->to_date])->get()
+            'transactions' => Transaction::whereBetween('created_at', [$this->from_date, $this->to_date])->get(),
+            'total' => Transaction::whereBetween('created_at', [$this->from_date, $this->to_date])->sum('total_price'),
         ]);
     }
 }

@@ -18,5 +18,12 @@
             <td>{{ $transaction->created_at }}</td>
         </tr>
     @endforeach
+        <tr>
+            <td></td>
+            <td></td>
+            <td><b>{{ $total }}</b></td>
+            <td></td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
